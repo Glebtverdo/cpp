@@ -1,11 +1,11 @@
-SRCS			= main.cpp Replace.cpp
+SRCS			= main.cpp Harl.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
 CPP				= c++
 RM				= rm -f
 CPPFLAGS		= -Wall -Wextra -Werror -I.
 
-NAME			= replace
+NAME			= harl
 
 all:			$(NAME)
 
