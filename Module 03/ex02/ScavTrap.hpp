@@ -2,10 +2,18 @@
 # define SCAVTRAP_HPP
 # include "ClapTrap.hpp" 
 
-class ScavTrap : privat ClapTrap
+class ScavTrap : public ClapTrap
 {
     public:
+        ScavTrap();
+        ~ScavTrap();
+        ScavTrap(std::string);
+        ScavTrap(const ScavTrap &srcForCopy);
+        ScavTrap & operator=(const ScavTrap &srcForAssigment);
         void guardGate();
-}
+        void attack(const std::string& target);
+        void takeDamage(unsigned int amount);
+        void beRepaired(unsigned int amount);
+};
 
 #endif

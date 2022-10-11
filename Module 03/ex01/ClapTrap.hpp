@@ -4,7 +4,7 @@
 
 class ClapTrap
 {
-private:
+protected:
     std::string _name;
     unsigned int _HP, _EP, _damage;
 public:

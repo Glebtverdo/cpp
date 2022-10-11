@@ -1,26 +1,26 @@
 #include"ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _HP(100), _EP(50), _damage(20){
-    std::cout << "defaut constructor\n";
+ClapTrap::ClapTrap() : _HP(10), _EP(10), _damage(0){
+    std::cout << "ClapTrap defaut constructor\n";
     std::cout << "insert ClapTrap name:  ";
     std::cin >> _name;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _HP(10), _EP(10), _damage(0){
-    std::cout << "string constructor\n";
+    std::cout << "ClapTrap string constructor\n";
 }
 
 ClapTrap::~ClapTrap(){
-    std::cout << "destructor\n";
+    std::cout << "ClapTrap destructor\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap &srcForCopy){
-    std::cout << "copy constructor\n";
+    std::cout << "ClapTrap copy constructor\n";
     *this = srcForCopy;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &srcForAssigment){
-    std::cout << "assigment constructor";
+    std::cout << "ClapTrap assigment constructor";
     this->_damage = srcForAssigment._damage;
     this->_EP = srcForAssigment._EP;
     this->_HP = srcForAssigment._HP;
