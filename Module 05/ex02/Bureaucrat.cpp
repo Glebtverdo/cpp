@@ -78,3 +78,7 @@ std::ostream &operator<<(std::ostream &file, const Bureaucrat &srcToShow){
 void Bureaucrat::signForm(Form & form) {
     form.beSing(*this);
 }
+
+void Bureaucrat::executeForm(Form & form) {
+    form.execute(*this);
+}

@@ -6,16 +6,16 @@ class Bureaucrat;
 
 class Form
 {
-    private:
+    protected:
         const int _gradeToSingIn, _gradeToEx;
         const std::string _name;
         bool _isSigned;
-        void checkGrade(int grade);
-        void signIn();
+        virtual void checkGrade(int grade);
+        virtual void signIn();
     public:
         Form();
         Form(std::string name, int gradeToSingIn, int gradeToEx);
-        ~Form();
+        virtual ~Form();
         Form(const Form &srcForCopy);
         class GradeTooHighException: std::exception {
             public:
@@ -25,13 +25,16 @@ class Form
             public:
                 virtual const char *what () const throw();
         };
-        Form &operator=(const Form &srcForAssigment);
-        int getGradeToSingIn() const;
-        int getGradeToEx() const;
-        std::string getName() const;
-        bool getIsSinged() const;
-        std::string message() const;
-        void beSing(const Bureaucrat & slave);
+        virtual Form &operator=(const Form &srcForAssigment);
+        virtual int getGradeToSingIn() const ;
+        virtual int getGradeToEx() const;
+        virtual std::string getName() const;
+        virtual void print() =0;
+        virtual bool getIsSinged() const;
+        virtual std::string message() const;
+        virtual void action() const =0;
+        virtual void beSing(const Bureaucrat & slave);
+        virtual void execute(Bureaucrat const & executor) const;
 };
 
 std::ostream &operator<<(std::ostream &file, const Form &someform);

@@ -46,13 +46,13 @@ bool Form::getIsSinged() const{
 }
 
 std::string Form::message() const{
-    return "Form " + this->getName() + ":\n   isSinged = " + (this->getIsSinged() ? "true " : "false ") \
+    return this->getName() + ":\n   isSinged = " + (this->getIsSinged() ? "true " : "false ") \
      + "\n   grade to sing in = " + std::to_string(this->getGradeToSingIn()) + \
      "\n   grade to action = " + std::to_string(this->getGradeToEx()) + "\n";
 }
 
 std::ostream &operator<<(std::ostream &file, const Form &someForm){
-    return file << someForm.message();
+    return file << "Form " + someForm.message();
 }
 
 void Form::checkGrade(int grade){
@@ -80,7 +80,7 @@ void Form::beSing(const Bureaucrat & slave){
                 std::cout << slave.getName() + " singed " + this->getName() << "\n";
                 signIn();
             }else{
-                std::cout << slave.getName() + " could not sign " + this->getName() + " because\n";
+                std::cout << slave.getName() + " could not sign " + this->getName() + " because";
                 throw Form::GradeTooLowException();
             }
         }else{
@@ -94,4 +94,21 @@ void Form::beSing(const Bureaucrat & slave){
 
 void Form::signIn(){
     this->_isSigned = true;
+}
+
+void Form::print(){
+    std::cout << "Form " + message();
+}
+
+void Form::execute(Bureaucrat const & executor) const{
+    try
+    {
+        if(executor.getGrade() <= this->getGradeToEx()){
+            this->action();
+        }else
+            throw Form::GradeTooLowException();
+    }catch(const Form::GradeTooLowException& e){
+        std::cerr << e.what();
+    }
+    
 }

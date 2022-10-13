@@ -30,6 +30,7 @@ public:
     void gradeDecrement();
     std::string messadge() const;
     void signForm(Form & form);
+    void executeForm(Form & form);
 };
 
 std::ostream &operator<<( const std::ostream &file, const Bureaucrat &srcToShow);
