@@ -51,9 +51,8 @@ int Span::longestSpan(){
 void Span::addByIteratorRange( std::vector<int>::iterator begin, std::vector<int>::iterator end){
     try
     {
-        for (std::vector<int>::iterator i = begin; i < end; ++i)
+        for (std::vector<int>::iterator i = begin; i != end; ++i)
         {
-            std::cout << *i << "   ";
             this->addNumber(*i);
         }
     }
