@@ -40,7 +40,8 @@ int Fixed::toInt() const{
 }
 
 float Fixed::toFloat() const {
-    return (float)this->getRawBits()
+    return (float)this->getRawBits();
+}
 
 int Fixed::getRawBits(void) const{
     return _value;
