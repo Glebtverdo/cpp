@@ -32,11 +32,16 @@ Fixed::Fixed(std::string str){
                 break ;
             }
         }
-        if(parsedString.empty())
+        if(parsedString != ""){
+            double preval = 0;
+            std::istringstream ( parsedString ) >> preval;
+            _value = preval * (1 << _fracBits);
+        } else if(length == 1){
+            int some = (int)str[0];
+            _value = some * (1 << _fracBits);
+        } else {
             throw std::exception();
-        double preval = 0;
-        std::istringstream ( parsedString ) >> preval;
-        _value = preval * (1 << _fracBits);
+        }
     }
 }
 
@@ -66,21 +71,28 @@ void Fixed::showFloat() {
     std::cout << "float : ";
     if(_macros_value.empty())
         std::cout << ((float)this->getRawBits() / (1 << _fracBits));
-    else
-        std::cout << _macros_value;
-
-    if((float)this->getRawBits() / (1 << _fracBits) == (this->getRawBits() >> _fracBits))
-        std::cout << ".0";
-    std::cout << "f\n";
+    else{
+        if(_macros_value.compare("nan") == 0)
+            std::cout << "nanf";
+        else
+            std::cout << _macros_value;
+    }
+    if(_macros_value.empty() && (float)this->getRawBits() / (1 << _fracBits) == (this->getRawBits() >> _fracBits))
+        std::cout << ".0f";
+    std::cout << "\n";
 }
 
 void Fixed::showDouble() {
     std::cout << "double : ";
     if(_macros_value.empty())
         std::cout << ((double)this->getRawBits() / (1 << _fracBits));
-    else
-        std::cout << _macros_value;
-    if((double)this->getRawBits() / (1 << _fracBits) == (this->getRawBits() >> _fracBits))
+    else{
+        if(_macros_value.compare("nanf") == 0)
+            std::cout << "nan";
+        else
+            std::cout << _macros_value;
+    }
+    if(_macros_value.empty() && (double)this->getRawBits() / (1 << _fracBits) == (this->getRawBits() >> _fracBits))
         std::cout << ".0";
     std::cout << "\n";
 }

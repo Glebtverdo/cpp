@@ -16,7 +16,7 @@ void RobotomyRequestForm::action() const{
             std::cout<< "\n";
         i++;
     }
-    std::cout << getTarget() + " has been robotomizedsuccessfully 50% of the time\n";
+    std::cout << "50%\n";
     while (i < 70)
     {
         std::cout<< "...";
@@ -24,8 +24,10 @@ void RobotomyRequestForm::action() const{
             std::cout<< "\n";
         i++;
     }
+    int random = (rand() % 10);
+    std::cout << random;
     std::cout << "         ";
-    std::cout << " robotomy failed successfully...\n";
+    std::cout << getTarget() <<  (random > 5 ? " has been robotomized successfully...\n" : " robotomy faild...\n" );
 }
 
 
